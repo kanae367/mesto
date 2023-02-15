@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+
+        <title>Жак-Ив Кусто</title>
+    </head>
+    <body class="body">
+        <header class="header">
+            <img class="header__logo" src="images/logo.svg" alt="Mesto">
+        </header>
+
+        <main class="main">
+            <section class="profile">
+                <img class="profile__photo" src="images/profile-photo.png" alt="Фото профиля">
+                <div class="profile__info">
+                    <h1 class="info__name ">Жак-Ив Кусто</h1>
+                    <p class="info__text">Исследователь океана</p>
+                    <button class="change-info-btn"></button>
+                </div>
+                <button class="add-photo-btn"></button>
+            </section>
+
+            <section class="photos">
+                <ul class="photos__list">
+                </ul>
+            </section>
+        </main>
+
+        <div class="menu-container">
+            <div class="menu">
+                <h3 class="menu__title"></h3>
+                <input class="menu__input" type="text">
+                <input class="menu__input" type="text">
+                <button class="confirm-button"></button>
+                <button class="close-button"></button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="copyright">© 2023 Артём Пикулин</p>
+        </footer>
+
+        <script src="cards.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
