@@ -17,11 +17,15 @@
 
         <main class="main">
             <section class="profile">
-                <img class="profile__photo" src="images/profile-photo.png" alt="Фото профиля">
+                <div class="profile__photo-container">
+                    <img class="profile__photo" src="images/profile-photo.png" alt="Фото профиля">
+                </div>
                 <div class="profile__info">
-                    <h1 class="info__name ">Жак-Ив Кусто</h1>
+                    <div class="info__container">
+                        <h1 class="info__name ">Жак-Ив Кусто</h1>
+                        <button class="change-info-btn"></button>
+                    </div>
                     <p class="info__text">Исследователь океана</p>
-                    <button class="change-info-btn"></button>
                 </div>
                 <button class="add-photo-btn"></button>
             </section>
@@ -36,8 +40,10 @@
             <div class="menu">
                 <h3 class="menu__title"></h3>
                 <input class="menu__input" type="text">
+                <p class="menu__alert"></p>
                 <input class="menu__input" type="text">
-                <button class="confirm-button"></button>
+                <p class="menu__alert"></p>
+                <button class="confirm-button confirm-button_disabled" disabled></button>
                 <button class="close-button"></button>
             </div>
         </div>

@@ -4,7 +4,7 @@ let savedCards = [
         link: 'https://s9.stc.all.kpcdn.net/family/wp-content/uploads/2022/08/britanskaya-korotkosherstnaya-koshka-960-540-960x540.jpg'
     },
     {
-        name: 'Бирманская кошка>',
+        name: 'Бирманская кошка',
         link: 'https://avatars.dzeninfra.ru/get-zen_doc/1595998/pub_60b89a5f9fef424fc0002cfa_60b8b633beac402db7b38a8e/scale_1200'
     },
     {

@@ -1,6 +1,21 @@
+const ul = document.querySelector('.photos__list');
+const profileName = document.querySelector('.info__name');
+const otherInfo = document.querySelector('.info__text');
+const menu = document.querySelector('.menu-container');
+const changeInfoBtn = document.querySelector('.change-info-btn');
+const inputs = Array.from(document.querySelectorAll('.menu__input'));
+const submitBtn = document.querySelector('.confirm-button');
+const menuTitle = document.querySelector('.menu__title');
+const closeBtn = document.querySelector('.close-button');
+const addBtn = document.querySelector('.add-photo-btn');
+const avatar = document.querySelector('.profile__photo');
+const changeProfilePhotoBtn = document.querySelector('.profile__photo-container');
+const inputName = inputs[0];
+const inputLink = inputs[1];
+
 function newElement(tag, addedClass, text = ''){
     if(typeof tag == 'string' && typeof addedClass == 'string'){
-        let newElem = document.createElement(tag);
+        const newElem = document.createElement(tag);
         newElem.classList.add(addedClass);
         if(text != ''){
             newElem.textContent = text;
@@ -10,34 +25,23 @@ function newElement(tag, addedClass, text = ''){
 } 
 
 function createCard(cardName, imageLink){
-    let ul = document.querySelector('.photos__list');
-
-    let li = newElement('li', 'photos__list-item');
-    ul.append(li);
-
-    let imgDiv = newElement('div', 'item__image-container');
-    li.append(imgDiv);
-
-    let trash = newElement('div', 'delete-item')
+    const li = newElement('li', 'photos__list-item');
+    const imgDiv = newElement('div', 'item__image-container');
+    const image = newElement('img', 'item__image');
+    const trash = newElement('div', 'delete-item')
+    const nameDiv = newElement('div','item__container');
+    const button = newElement('button', 'like-btn');
+    if(cardName.length > 13) cardName = cardName.substring(0, 10) + '...';
+    const header = newElement('h2', 'item__header', cardName);
     li.append(trash);
-
-    let nameDiv = newElement('div','item__container');
+    li.append(imgDiv);
     li.append(nameDiv);
-
-    let image = newElement('img', 'item__image');
     image.alt = cardName;
     image.src = imageLink;
     imgDiv.append(image);
-
-    if(cardName.length > 13){
-        cardName = cardName.substring(0, 10) + '...';
-    }
-
-    let header = newElement('h2', 'item__header', cardName);
     nameDiv.append(header);
-
-    let button = newElement('button', 'like-btn');
     nameDiv.append(button);
+    ul.append(li);
 }
 
 for(let card of savedCards){
@@ -46,89 +50,149 @@ for(let card of savedCards){
     }
 }
 
+let clearInputs = function(){
+    for(let input of inputs){
+        input.value = '';
+        input.placeholder = '';
+        input.style.display = '';
+    }
+}
+
+let enableButton = function(){
+    submitBtn.removeAttribute('disabled');
+    submitBtn.classList.remove('confirm-button_disabled')
+}
+
+let disableButton = function(){
+    submitBtn.setAttribute('disabled', '');
+    submitBtn.classList.add('confirm-button_disabled');
+}
+
+let addNewCard = function(){
+    createCard(inputName.value, inputLink.value)
+    this.removeEventListener('click', addNewCard);
+    menu.style.visibility = 'hidden';
+    disableButton();
+    clearInputs();
+}
+
+let changeAvatar = function(){
+    menu.style.visibility = 'hidden';
+    inputName.style.display = '';
+    avatar.src = inputLink.value; 
+    clearInputs();
+    disableButton();
+    this.removeEventListener('click', changeAvatar);
+}
+
+let validateInputs = function(){
+    if(menuTitle.textContent == 'Новая кошка'){
+        if(inputName.value.length > 0 && inputLink.value.substring(0, 4) == 'http'){
+            enableButton();
+        }else{
+            disableButton();
+        }
+    }else if(menuTitle.textContent == 'Редактировать профиль'){
+        if(inputName.value.length > 0 && (inputName.value !== profileName.textContent || inputLink.value !== otherInfo.textContent)){
+            enableButton();
+        }else{
+            disableButton();
+        }
+    }else if(menuTitle.textContent == 'Обновить аватар'){
+        if(inputLink.value.substring(0, 4) == 'http'){
+            enableButton();
+        }else{
+            disableButton();
+        }
+    }else{
+        return;
+    }
+}
+
+let changeInformation = function(){
+    document.querySelector('title').innerHTML = inputName.value;
+    profileName.textContent = inputName.value;
+    otherInfo.textContent = inputLink.value;
+    menu.style.visibility = 'hidden';
+    submitBtn.removeEventListener('click', changeInformation);
+    disableButton();
+    clearInputs();
+}
+
+menu.addEventListener('input', validateInputs);
+
+//переключение стилей у лайка по нажатию
 document.addEventListener('click', function(e){
     let target = e.target;
     if(!target.classList.contains('like-btn')) return;
     target.classList.toggle('like-btn_pressed');
 })
 
-let changeMenu = document.querySelector('.menu-container');
-let changeInfoBtn = document.querySelector('.change-info-btn');
-let inputs = Array.from(document.querySelectorAll('.menu__input'));
-let submitBtn = document.querySelector('.confirm-button');
-let menuTitle = document.querySelector('.menu__title');
-let closeBtn = document.querySelector('.close-button');
-
-let clearInputs = function(){
-    for(let input of inputs){
-        input.value = '';
-    }
-}
-
-let removePlaceholders = function(){
-    for(let input of inputs){
-        input.placeholder = '';
-    }
-}
-
 changeInfoBtn.addEventListener('click', function(){
-    changeMenu.style.display = 'flex';
     menuTitle.textContent = 'Редактировать профиль';
     submitBtn.textContent = 'Сохранить';
-    let name = document.querySelector('.info__name');
-    let info = document.querySelector('.info__text');
-    inputs[0].value = name.textContent; // Возможно можно реализовать лучше
-    inputs[1].value = info.textContent;
-
-    closeBtn.addEventListener('click', function(){
-        changeMenu.style.display = 'none';
-        submitBtn.removeEventListener('click', changeInformation);
-        clearInputs();
-    })
-
-    let changeInformation = function(){
-        if(inputs[0].value.length > 0 && (inputs[0].value != name.textContent || inputs[1].value != info.textContent)){
-            name.textContent = inputs[0].value;
-            document.querySelector('title').innerHTML = inputs[0].value;
-            info.textContent = inputs[1].value; // можно доработать отображение кнопки с короткими именами
-        }
-    changeMenu.style.display = 'none';
-    submitBtn.removeEventListener('click', changeInformation);
-    clearInputs();
-    }
+    inputName.placeholder = 'Имя';
+    inputLink.placeholder = 'Дополнительная информация (необязательно)'
+    inputName.value = profileName.textContent;
+    inputLink.value = otherInfo.textContent;
+    menu.style.visibility = 'visible';
     
     submitBtn.addEventListener('click', changeInformation);
 })
 
-let addBtn = document.querySelector('.add-photo-btn');
 addBtn.addEventListener('click', function(){
-    changeMenu.style.display = 'flex';
     menuTitle.textContent = 'Новая кошка';
     submitBtn.textContent = 'Создать';
-    inputs[0].placeholder = 'Название';
-    inputs[1].placeholder = 'Ссылка на картинку';
-
-    closeBtn.addEventListener('click', function(){
-        changeMenu.style.display = 'none';
-        submitBtn.removeEventListener('click', addNewCard);
-        removePlaceholders();
-        clearInputs()
-    })
-
-    let addNewCard = function(){
-        if(inputs[0].value.trim().length > 0 && (inputs[1].value.length > 0)){
-            createCard(inputs[0].value, inputs[1].value)
-        }
-    submitBtn.removeEventListener('click', addNewCard);
-    changeMenu.style.display = 'none';
-    removePlaceholders();
-    clearInputs()
-    }
-
+    inputName.placeholder = 'Название';
+    inputLink.placeholder = 'Ссылка на картинку';
+    menu.style.visibility = 'visible';
     submitBtn.addEventListener('click', addNewCard);
 })
-
+//delete item 
 document.addEventListener('click', function(e){
     if(!e.target.classList.contains('delete-item')) return;
     e.target.closest('li').remove();
+})
+//big-image
+document.addEventListener('click', function(e){
+    let target = e.target;
+    if(!target.classList.contains('item__image')) return;
+    let popup = newElement('div', 'menu-container');
+    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+    popup.style.visibility = 'visible';
+    let popupContainer = newElement('div', 'popup-container')
+    let fullImage = newElement('img', 'full-image');
+    fullImage.alt = target.alt;
+    fullImage.src = target.src;
+    let imageCaption = newElement('p', 'caption', fullImage.alt);
+    let newCloseBtn = newElement('button', 'close-button');
+    popupContainer.append(fullImage);
+    popupContainer.append(imageCaption);
+    popupContainer.append(newCloseBtn);
+    popup.append(popupContainer);
+    document.querySelector('body').append(popup);
+    popup.addEventListener('click', function(e){
+        let target = e.target;
+        if(!target.classList.contains('close-button')) return;
+        popup.remove();
+    })
+})
+//change avatar
+changeProfilePhotoBtn.addEventListener('click', function(){
+    menuTitle.textContent = 'Обновить аватар';
+    submitBtn.textContent = 'Сохранить';
+    inputLink.placeholder = 'Ссылка на изображение';
+    inputName.style.display = 'none';
+    menu.style.visibility = 'visible';
+
+    submitBtn.addEventListener('click', changeAvatar);
+})
+
+closeBtn.addEventListener('click', function(){
+    menu.style.visibility = 'hidden';
+    submitBtn.removeEventListener('click', changeAvatar);
+    submitBtn.removeEventListener('click', changeInformation);
+    submitBtn.removeEventListener('click', addNewCard);
+    disableButton();
+    clearInputs()
 })
