@@ -9,6 +9,10 @@ ul{
     list-style: none;
 }
 
+button:focus{
+    outline: none;
+}
+
 .body{
     min-width: 320px;
     max-width: 1280px;
@@ -195,6 +199,7 @@ ul{
 }
 
 .photos__list{
+    min-height: 500px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -205,6 +210,7 @@ ul{
 .photos__list-item{
     position: relative;
     width: 282px;
+    max-height: 361px;
     border-radius: 10px;
     background-color: white;
 }
@@ -221,13 +227,19 @@ ul{
     height: 100%;
     object-fit: cover;
     cursor: pointer;
+    transition: opacity 0.5s;
     background-color: transparent;
     border-radius: 10px 10px 0px 0px;
+}
+
+.item__image:hover{
+    opacity: 0.85;
 }
 
 .delete-item{
     position: absolute;
     width: 18px;
+    z-index: 1;
     height: 19px;
     cursor: pointer;
     background-image: url(images/trash.svg);
@@ -307,10 +319,12 @@ ul{
 
 .menu-container{
     position: fixed;
-    visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity .3s, visibility .3s;
+    opacity: 1;
+    z-index: 2;
     width: 100%;
     height: 100%;
     top: 0;
@@ -339,26 +353,29 @@ ul{
     margin-bottom: 75px;
 }
 
-.menu__input{
+.menu__form{
+    position: relative;
     width: calc(100% - 44px);
+    margin: 0 auto;
+}
+
+.menu__input{
+    width: 100%;
     border: none;
     padding: 0;
     padding-bottom: 13px;
     margin: 0 auto;
     margin-bottom: 30px;
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
-}
-
-.menu__input:last-of-type{
-    margin-bottom: 0px;
+    transition: border-bottom 0.4s ease-in-out;
 }
 
 .menu__input:focus{
     outline: none;
 }
 
-.confirm-button{
-    width: calc(100% - 44px);
+.submit-button{
+    width: 100%;
     background-color: black;
     color: white;
     cursor: pointer;
@@ -367,24 +384,12 @@ ul{
     border-radius: 2px;
     padding: 14px 0;
     margin: 0 auto;
-    margin-top: 48px;
+    margin-top: 18px;
     margin-bottom: 25px;
 }
 
-.confirm-button:hover{
+.submit-button:hover{
     opacity: 0.8;
-}
-
-.confirm-button_disabled{
-    color: black;
-    background-color: white;
-    border: 1px solid black;
-    cursor: default;
-    opacity: 0.2;
-}
-
-.confirm-button_disabled:hover{
-    opacity: 0.2;
 }
 
 .close-button{
@@ -393,11 +398,16 @@ ul{
     height: 20px;
     top: -36px;
     right: 0;
+    transition: opacity 0.6s;
     cursor: pointer;
     background-color: transparent;
     background-image: url(images/closeicon.svg);
     background-size: 100% 100%;
     border: none;
+}
+
+.close-button:hover{
+    opacity: 0.8;
 }
 
 .popup-container{
@@ -425,12 +435,11 @@ ul{
         margin-bottom: 54px;
     }
 
-    .menu__input{
+    .menu__form{
         width: calc((100% - 72px));
     }
 
-    .confirm-button{
-        width: calc((100% - 72px));
+    .submit-button{
         font-size: 18px;
         line-height: 22px;
         margin-bottom: 37px;
@@ -444,10 +453,12 @@ ul{
     }
 }
 
-.profile__photo-container:hover:after{
+.profile__photo-container::after{
     position: absolute;
     content: '';
     z-index: 3;
+    transition: opacity .3s;
+    opacity: 0;
     width: 122px;
     height: 122px;
     cursor: pointer;
@@ -460,6 +471,11 @@ ul{
     left: -1px;
 }
 
-.menu__alert{
-    display: none;
+.profile__photo-container:hover::after{
+    opacity: 1;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
 }

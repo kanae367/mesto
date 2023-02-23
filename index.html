@@ -7,7 +7,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
-
         <title>Жак-Ив Кусто</title>
     </head>
     <body class="body">
@@ -36,14 +35,37 @@
             </section>
         </main>
 
-        <div class="menu-container">
+        <div class="menu-container hidden">
             <div class="menu">
-                <h3 class="menu__title"></h3>
-                <input class="menu__input" type="text">
-                <p class="menu__alert"></p>
-                <input class="menu__input" type="text">
-                <p class="menu__alert"></p>
-                <button class="confirm-button confirm-button_disabled" disabled></button>
+                <h3 class="menu__title">Редактировать профиль</h3>
+                <form name="infoForm" class="menu__form">
+                    <input class="menu__input" placeholder="Имя" type="text" min="2" required>
+                    <input class="menu__input" placeholder="Дополнительная информация" type="text">
+                    <button class="submit-button" type="submit">Сохранить</button>
+                </form>
+                <button class="close-button"></button>
+            </div>
+        </div>
+
+        <div class="menu-container hidden">
+            <div class="menu">
+                <h3 class="menu__title">Новая кошка</h3>
+                <form name="cardForm" class="menu__form">
+                    <input class="menu__input" placeholder="Название" type="text" min="2" required>
+                    <input class="menu__input" placeholder="Ссылка на картинку" type="text" min="1" pattern="^(http)" required>
+                    <button class="submit-button" type="submit" >Создать</button>
+                </form>
+                <button class="close-button"></button>
+            </div>
+        </div>
+
+        <div class="menu-container hidden">
+            <div class="menu">
+                <h3 class="menu__title">Обновить аватар</h3>
+                <form name="avatarForm" class="menu__form">
+                    <input class="menu__input" placeholder="Ссылка на изображение" type="text" min="1" pattern="^(http)" required>
+                    <button class="submit-button" type="submit">Сохранить</button>
+                </form>
                 <button class="close-button"></button>
             </div>
         </div>
@@ -53,6 +75,18 @@
         </footer>
 
         <script src="cards.js"></script>
-        <script src="index.js"></script>
-    </body>
+        <script src="main.js"></script>
+    </body> 
+    
+    <template>
+        <div class="menu-container hidden">
+            <div class="menu">
+                <h3 class="menu__title">Вы уверены?</h3>
+                <div class="menu__form">
+                    <button class="submit-button" type="submit">Да</button>
+                </div>
+                <button class="close-button"></button>
+            </div>
+        </div>
+    </template>
 </html>
