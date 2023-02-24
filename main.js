@@ -8,6 +8,7 @@ const changeAvatarBtn = document.querySelector('.profile__photo-container');
 const addCardBtn = document.querySelector('.add-photo-btn');
 const avatar = document.querySelector('.profile__photo');
 
+const alerts = document.querySelectorAll('.validation-message'); 
 const popups = document.querySelectorAll('.menu-container');
 const inputs = document.querySelectorAll('.menu__input');
 
@@ -72,7 +73,7 @@ ul.addEventListener('click', function(evt){
     target.classList.toggle('like-btn_pressed');
 })
 
-document.addEventListener('click', function(evt){
+ul.addEventListener('click', function(evt){
     const target = evt.target;
     if(!target.classList.contains('item__image')) return;
 
@@ -139,6 +140,7 @@ cardForm.addEventListener('submit', function(evt){
 
 const changeAvatar = function(){
     avatar.src = avatarUrlInput.value;
+    avatarUrlInput.value = '';
 }
 
 changeAvatarBtn.addEventListener('click', () => changeAvatarPopup.classList.remove('hidden'));
@@ -176,7 +178,51 @@ document.addEventListener('click', function(evt){
 document.addEventListener('mousedown', function(evt){
     const target = evt.target;
 
-    if(target.classList.contains('close-button') || target.classList.contains('menu-container'))
+    if(target.classList.contains('close-button') || target.classList.contains('menu-container')){
         target.closest('.menu-container').classList.add('hidden');
+        for(const alert of alerts) alert.classList.add('hidden');
+        setTimeout(() => {
+            for(const input of inputs){
+                input.style.borderBottom = '';
+                input.value = '';
+            } 
+
+        }, 300);
+    }
 });
 
+const forms = document.querySelectorAll('.menu__form');
+for(const form of forms){
+    form.addEventListener('input', function(evt){
+        const target = evt.target;
+        const submitBtn = this.querySelector('.submit-button');
+
+        if(target.closest('div').className === 'menu__input-container'){
+            const alertMessage = target.closest('.menu__input-container').querySelector('.validation-message');
+
+            if(target.checkValidity() === false){
+                const validity = target.validity;
+
+                if(validity.valueMissing){
+                    alertMessage.textContent = 'Вы пропустили это поле.';
+                }
+
+                if(validity.patternMismatch){
+                    alertMessage.textContent = 'Введите адрес сайта.'
+                }
+
+                alertMessage.classList.remove('hidden');
+                target.style.borderBottom = '1px solid red'
+            }else{
+                alertMessage.classList.add('hidden');
+                target.style.borderBottom = '';
+            }
+        }
+
+        if(this.checkValidity() === true){
+            submitBtn.disabled = '';
+        }else{
+            submitBtn.disabled = 'true';
+        }
+    });
+}

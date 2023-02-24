@@ -39,9 +39,12 @@
             <div class="menu">
                 <h3 class="menu__title">Редактировать профиль</h3>
                 <form name="infoForm" class="menu__form">
-                    <input class="menu__input" placeholder="Имя" type="text" min="2" required>
+                    <div class="menu__input-container">
+                        <input class="menu__input" placeholder="Имя" type="text" required>
+                        <span class="validation-message hidden"></span>
+                    </div>
                     <input class="menu__input" placeholder="Дополнительная информация" type="text">
-                    <button class="submit-button" type="submit">Сохранить</button>
+                    <button class="submit-button" type="submit" disabled>Сохранить</button>
                 </form>
                 <button class="close-button"></button>
             </div>
@@ -51,9 +54,15 @@
             <div class="menu">
                 <h3 class="menu__title">Новая кошка</h3>
                 <form name="cardForm" class="menu__form">
-                    <input class="menu__input" placeholder="Название" type="text" min="2" required>
-                    <input class="menu__input" placeholder="Ссылка на картинку" type="text" min="1" pattern="^(http)" required>
-                    <button class="submit-button" type="submit" >Создать</button>
+                    <div class="menu__input-container">
+                        <input class="menu__input" placeholder="Название" type="text" required>
+                        <span class="validation-message hidden"></span>
+                    </div>
+                    <div class="menu__input-container">
+                        <input class="menu__input" placeholder="Ссылка на картинку" type="text" min="1" pattern="^(http:\/\/).+|^(https:\/\/).+" required>
+                        <span class="validation-message hidden"></span>
+                    </div>
+                    <button class="submit-button" type="submit" disabled >Создать</button>
                 </form>
                 <button class="close-button"></button>
             </div>
@@ -63,8 +72,11 @@
             <div class="menu">
                 <h3 class="menu__title">Обновить аватар</h3>
                 <form name="avatarForm" class="menu__form">
-                    <input class="menu__input" placeholder="Ссылка на изображение" type="text" min="1" pattern="^(http)" required>
-                    <button class="submit-button" type="submit">Сохранить</button>
+                    <div class="menu__input-container">
+                        <input class="menu__input" placeholder="Ссылка на изображение" type="text" min="1" pattern="^(http:\/\/).+|^(https:\/\/).+" required>
+                        <span class="validation-message hidden"></span>
+                    </div>
+                    <button class="submit-button" type="submit" disabled>Сохранить</button>
                 </form>
                 <button class="close-button"></button>
             </div>
@@ -83,7 +95,7 @@
             <div class="menu">
                 <h3 class="menu__title">Вы уверены?</h3>
                 <div class="menu__form">
-                    <button class="submit-button" type="submit">Да</button>
+                    <button class="submit-button">Да</button>
                 </div>
                 <button class="close-button"></button>
             </div>

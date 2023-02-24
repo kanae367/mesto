@@ -382,6 +382,7 @@ button:focus{
     transition: all 0.6s, visibility 0s;
     border: none;
     border-radius: 2px;
+    border: 2px solid black;
     padding: 14px 0;
     margin: 0 auto;
     margin-top: 18px;
@@ -478,4 +479,23 @@ button:focus{
 .hidden {
     visibility: hidden;
     opacity: 0;
+}
+
+.menu__input-container{
+    position: relative;
+}
+
+.validation-message{
+    position: absolute;
+    color: red;
+    font-size: 12px;
+    line-height: 15px;
+    bottom: 10px;
+    left: 0;
+}
+
+.submit-button:disabled{
+    background-color: inherit;
+    color: black;
+    opacity: .2;
 }
