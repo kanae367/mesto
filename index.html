@@ -35,13 +35,13 @@
             </section>
         </main>
 
-        <div class="menu-container hidden">
+        <div class="menu-container">
             <div class="menu">
                 <h3 class="menu__title">Редактировать профиль</h3>
                 <form name="infoForm" class="menu__form">
                     <div class="menu__input-container">
                         <input class="menu__input" placeholder="Имя" type="text" required>
-                        <span class="validation-message hidden"></span>
+                        <span class="validation-message"></span>
                     </div>
                     <input class="menu__input" placeholder="Дополнительная информация" type="text">
                     <button class="submit-button" type="submit" disabled>Сохранить</button>
@@ -50,17 +50,17 @@
             </div>
         </div>
 
-        <div class="menu-container hidden">
+        <div class="menu-container">
             <div class="menu">
                 <h3 class="menu__title">Новая кошка</h3>
                 <form name="cardForm" class="menu__form">
                     <div class="menu__input-container">
                         <input class="menu__input" placeholder="Название" type="text" required>
-                        <span class="validation-message hidden"></span>
+                        <span class="validation-message"></span>
                     </div>
                     <div class="menu__input-container">
                         <input class="menu__input" placeholder="Ссылка на картинку" type="text" min="1" pattern="^(http:\/\/).+|^(https:\/\/).+" required>
-                        <span class="validation-message hidden"></span>
+                        <span class="validation-message"></span>
                     </div>
                     <button class="submit-button" type="submit" disabled >Создать</button>
                 </form>
@@ -68,13 +68,13 @@
             </div>
         </div>
 
-        <div class="menu-container hidden">
+        <div class="menu-container">
             <div class="menu">
                 <h3 class="menu__title">Обновить аватар</h3>
                 <form name="avatarForm" class="menu__form">
                     <div class="menu__input-container">
                         <input class="menu__input" placeholder="Ссылка на изображение" type="text" min="1" pattern="^(http:\/\/).+|^(https:\/\/).+" required>
-                        <span class="validation-message hidden"></span>
+                        <span class="validation-message"></span>
                     </div>
                     <button class="submit-button" type="submit" disabled>Сохранить</button>
                 </form>
@@ -87,16 +87,39 @@
         </footer>
 
         <script src="cards.js"></script>
-        <script src="main.js"></script>
+        <script defer src="main.js"></script>
     </body> 
     
-    <template>
-        <div class="menu-container hidden">
+    <template id="confirm-popup">
+        <div class="menu-container">
             <div class="menu">
                 <h3 class="menu__title">Вы уверены?</h3>
                 <div class="menu__form">
                     <button class="submit-button">Да</button>
                 </div>
+                <button class="close-button"></button>
+            </div>
+        </div>
+    </template>
+
+    <template id="card">
+        <li class="photos__list-item">
+            <div class="delete-item"></div>
+            <div class="item__image-container">
+                <img class="item__image" src="" alt="">
+            </div>
+            <div class="item__container">
+                <h2 class="item__header"></h2>
+                <button class="like-btn"></button>
+            </div>
+        </li>
+    </template>
+
+    <template id="big-image">
+        <div class="menu-container">
+            <div class="full-image-container">
+                <img class="full-image" src="" alt="">
+                <span></span>
                 <button class="close-button"></button>
             </div>
         </div>

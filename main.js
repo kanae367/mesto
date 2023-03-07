@@ -7,6 +7,9 @@ const changeInfoBtn = document.querySelector('.change-info-btn');
 const changeAvatarBtn = document.querySelector('.profile__photo-container');
 const addCardBtn = document.querySelector('.add-photo-btn');
 const avatar = document.querySelector('.profile__photo');
+const cardTemplate = document.querySelector('#card');
+const confirmPopupTemplate = document.querySelector('#confirm-popup');
+const bigImageTemplate = document.querySelector('#big-image');
 
 const alerts = document.querySelectorAll('.validation-message'); 
 const popups = document.querySelectorAll('.menu-container');
@@ -23,41 +26,16 @@ const cardUrlInput = inputs[3];
 const changeAvatarPopup = popups[2];
 const avatarUrlInput = inputs[4];
 
-function newElement(tag, addedClass, text = ''){
-    if(typeof tag == 'string' && typeof addedClass == 'string'){
-        const newElem = document.createElement(tag);
-        newElem.classList.add(addedClass);
-
-        if(text != ''){
-            newElem.textContent = text;
-        }
-
-        return newElem;
-    }
-} 
-
 function createCard(cardName, imageLink){
-    const li = newElement('li', 'photos__list-item');
-    const imgDiv = newElement('div', 'item__image-container');
-    const image = newElement('img', 'item__image');
-    const trash = newElement('div', 'delete-item')
-    const nameDiv = newElement('div','item__container');
-    const button = newElement('button', 'like-btn');
-
+    const clone = cardTemplate.content.cloneNode(true);
+    const image = clone.querySelector('.item__image');
+    const header  = clone.querySelector('.item__header');
     image.alt = cardName;
     image.src = imageLink;
-
     if(cardName.length > 13) cardName = cardName.substring(0, 10) + '...';
+    header.textContent = cardName;
 
-    const header = newElement('h2', 'item__header', cardName);
-
-    li.append(trash);
-    li.append(imgDiv);
-    li.append(nameDiv);
-    imgDiv.append(image);
-    nameDiv.append(header);
-    nameDiv.append(button);
-    ul.prepend(li);
+    ul.prepend(clone);
 }
 
 for(let card of savedCards){
@@ -73,26 +51,20 @@ ul.addEventListener('click', function(evt){
     target.classList.toggle('like-btn_pressed');
 })
 
-ul.addEventListener('click', function(evt){
-    const target = evt.target;
-    if(!target.classList.contains('item__image')) return;
-
-    const popupImage = newElement('div', 'menu-container');
-    const popupContainer = newElement('div', 'popup-container')
-    const fullImage = newElement('img', 'full-image');
-    const newCloseBtn = newElement('button', 'close-button');
-    popupImage.classList.add('hidden');
-    setTimeout(() => popupImage.classList.remove('hidden'), 10);
+const createImagePopup = function(image) {
+    const clone = bigImageTemplate.content.cloneNode(true);
+    const popupImage = clone.querySelector('.menu-container');
+    const fullImage = popupImage.querySelector('.full-image');
+    const imageCaption = popupImage.querySelector('span');
     popupImage.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-    fullImage.alt = target.alt;
-    fullImage.src = target.src;
-    const imageCaption = newElement('p', 'caption', fullImage.alt);
-    
-    popupContainer.append(fullImage);
-    popupContainer.append(imageCaption);
-    popupContainer.append(newCloseBtn);
-    popupImage.append(popupContainer);
+    fullImage.alt = image.alt;
+    fullImage.src = image.src;
+    imageCaption.textContent = fullImage.alt;
     body.append(popupImage);
+
+    setTimeout(() => {
+            popupImage.classList.add('active');
+    }, 10);
 
     popupImage.addEventListener('click', function(evt){
         const target = evt.target;
@@ -100,6 +72,13 @@ ul.addEventListener('click', function(evt){
         if(target != popupImage) return;
         setTimeout(() => popupImage.remove(), 300)
     });
+}
+
+ul.addEventListener('click', function(evt){
+    const target = evt.target;
+    if(!target.classList.contains('item__image')) return;
+
+    createImagePopup(target);
 });
 
 const setInputValue = function(){
@@ -115,13 +94,12 @@ const updateInfo = function(){
 
 changeInfoBtn.addEventListener('click', function(){
     setInputValue();
-    changeInformationPopup.classList.remove('hidden');
+    changeInformationPopup.classList.add('active');
 });
 
 infoForm.addEventListener('submit', function(evt){
     evt.preventDefault();
     updateInfo();
-    changeInformationPopup.classList.add('hidden');
 });
 
 const addNewCard = function(){
@@ -130,12 +108,11 @@ const addNewCard = function(){
     cardUrlInput.value = '';
 }
 
-addCardBtn.addEventListener('click', () => createCardPopup.classList.remove('hidden'));
+addCardBtn.addEventListener('click', () => createCardPopup.classList.add('active'));
 
 cardForm.addEventListener('submit', function(evt){
     evt.preventDefault();
     addNewCard();
-    createCardPopup.classList.add('hidden');
 });
 
 const changeAvatar = function(){
@@ -143,86 +120,108 @@ const changeAvatar = function(){
     avatarUrlInput.value = '';
 }
 
-changeAvatarBtn.addEventListener('click', () => changeAvatarPopup.classList.remove('hidden'));
+changeAvatarBtn.addEventListener('click', () => changeAvatarPopup.classList.add('active'));
 
 avatarForm.addEventListener('submit', function(evt){
     evt.preventDefault();
     changeAvatar();
-    changeAvatarPopup.classList.add('hidden');
 });
 
-document.addEventListener('click', function(evt){
-    const target = evt.target;
-    if(!target.classList.contains('delete-item')) return;
-
-    const confirmPopup = document.querySelector('template').content.cloneNode(true);
+const createConfirmPopup = function(element){
+    const confirmPopup = confirmPopupTemplate.content.cloneNode(true);
     const confirmPopupBtn = confirmPopup.querySelector('.submit-button');
     const closeBtn = confirmPopup.querySelector('.close-button');
     confirmPopupBtn.style.marginTop = '0';
     body.append(confirmPopup);
     
     setTimeout(() => {
-        closeBtn.closest('.menu-container').classList.remove('hidden');
+        closeBtn.closest('.menu-container').classList.add('active');
     }, 50);
 
     confirmPopupBtn.addEventListener('click', function(){
-        target.closest('li').remove();
+        element.closest('li').remove();
         this.closest('.menu-container').remove();
     })
 
     closeBtn.addEventListener('click', function(){
         closeBtn.closest('.menu-container').remove();
     });
+};
+
+document.addEventListener('click', function(evt){
+    const target = evt.target;
+    if(!target.classList.contains('delete-item')) return;
+
+    createConfirmPopup(target);
 });
+
+const resetPopups = function(element){
+    element.closest('.menu-container').classList.remove('active');
+    for(const alert of alerts) alert.classList.remove('active');
+    for(const btn of document.querySelectorAll('.submit-button')) btn.disabled = 'true';
+    setTimeout(() => {
+        for(const input of inputs){
+            input.style.borderBottom = '';
+            input.value = '';
+        }
+    }, 300);
+}
 
 document.addEventListener('mousedown', function(evt){
     const target = evt.target;
 
     if(target.classList.contains('close-button') || target.classList.contains('menu-container')){
-        target.closest('.menu-container').classList.add('hidden');
-        for(const alert of alerts) alert.classList.add('hidden');
-        setTimeout(() => {
-            for(const input of inputs){
-                input.style.borderBottom = '';
-                input.value = '';
-            } 
-
-        }, 300);
+        resetPopups(target);
     }
 });
 
+
+const validateInputs = function(input){
+    if(input.required){
+        const alertMessage = input.closest('.menu__input-container').querySelector('.validation-message');
+
+        if(input.checkValidity() === false){
+            const validity = input.validity;
+
+            if(validity.valueMissing){
+                alertMessage.textContent = 'Вы пропустили это поле.';
+            }else if(validity.patternMismatch){
+                alertMessage.textContent = 'Введите адрес сайта.'
+            }
+
+                alertMessage.classList.add('active');
+                input.style.borderBottom = '1px solid red'
+            }else{
+                alertMessage.classList.remove('active');
+                input.style.borderBottom = '';
+        }
+    }else{
+        return;
+    }
+}
+
+const validateForm = function(form){
+    const submitBtn = form.querySelector('.submit-button');
+
+    if(form.checkValidity() === true){
+        submitBtn.disabled = '';
+    }else{
+        submitBtn.disabled = 'true';
+    }
+}
+
+const hidePopup = function(){
+    this.closest('.menu-container').classList.remove('active');
+}
+
 const forms = document.querySelectorAll('.menu__form');
-for(const form of forms){
+
+forms.forEach(function(form){
     form.addEventListener('input', function(evt){
         const target = evt.target;
-        const submitBtn = this.querySelector('.submit-button');
-
-        if(target.closest('div').className === 'menu__input-container'){
-            const alertMessage = target.closest('.menu__input-container').querySelector('.validation-message');
-
-            if(target.checkValidity() === false){
-                const validity = target.validity;
-
-                if(validity.valueMissing){
-                    alertMessage.textContent = 'Вы пропустили это поле.';
-                }
-
-                if(validity.patternMismatch){
-                    alertMessage.textContent = 'Введите адрес сайта.'
-                }
-
-                alertMessage.classList.remove('hidden');
-                target.style.borderBottom = '1px solid red'
-            }else{
-                alertMessage.classList.add('hidden');
-                target.style.borderBottom = '';
-            }
-        }
-
-        if(this.checkValidity() === true){
-            submitBtn.disabled = '';
-        }else{
-            submitBtn.disabled = 'true';
-        }
+        validateInputs(target);
+        validateForm(form);
     });
-}
+
+    form.addEventListener('submit', hidePopup);
+});
