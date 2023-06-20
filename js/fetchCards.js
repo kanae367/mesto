@@ -7,6 +7,7 @@ export async function updateCards(){
         const cardsArray = [];
         snapshot.docs.map(item => cardsArray.push({...item.data(), id: item.id}));
         cardsArray.sort((a, b) => a.timestamp - b.timestamp);
+        document.querySelector('.photos__list').children.forEach(item => item.remove());
         cardsArray.forEach(item => createCard(item.name, item.imagelink, item.id));
     })
 }
