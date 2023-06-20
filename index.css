@@ -148,6 +148,12 @@ button:focus{
     border-radius: 2px;
 }
 
+@media screen and (max-width: 650px) {
+    .add-photo-btn{
+        width: 280px;
+    }
+}
+
 .add-photo-btn:hover{
     opacity: 0.6;
 }
@@ -202,9 +208,15 @@ button:focus{
     min-height: 500px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     row-gap: 20px;
     column-gap: 17px;
+}
+
+@media screen and (min-width: 1280px) {
+    .photos__list{
+        justify-content: unset;
+    }
 }
 
 .photos__list-item{
