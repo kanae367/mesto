@@ -1,18 +1,5 @@
 @import "normalize.css";
 
-*{
-    box-sizing: border-box;
-}
-
-ul{
-    padding: 0;
-    list-style: none;
-}
-
-button:focus{
-    outline: none;
-}
-
 .body{
     min-width: 320px;
     max-width: 1280px;
@@ -276,6 +263,10 @@ button:focus{
 }
 
 .item__header{
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     line-height: 29px;
     font-weight: 900;
     margin: 0;
@@ -338,10 +329,7 @@ button:focus{
     transition: opacity .3s, visibility .3s;
     opacity: 0;
     z-index: 2;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
 }
 

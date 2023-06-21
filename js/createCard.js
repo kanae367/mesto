@@ -10,7 +10,11 @@ export function createCard(cardName, imageLink, id, isLiked = false){
     item.setAttribute('data-id', id);
     image.alt = cardName;
     image.src = imageLink;
-    if(cardName.length > 13) cardName = cardName.substring(0, 10) + '...';
+    setTimeout(() => {
+        if(image.height < 50){
+            image.src = 'images/image-placeholder.png';
+        }
+    }, 1000)
     header.textContent = cardName;
 
     ul.prepend(clone);
