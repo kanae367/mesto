@@ -9,13 +9,15 @@ const validateInputs = function(input){
         if(validity.valueMissing){
             alertMessage.textContent = 'Вы пропустили это поле.';
         }else if(validity.patternMismatch){
-            alertMessage.textContent = 'Введите адрес сайта.'
+            alertMessage.textContent = 'Введите адрес сайта.';
         }else if(validity.tooShort){
-            alertMessage.textContent = 'Минимальная длина - 3 символа'
+            alertMessage.textContent = 'Минимальная длина - 3 символа';
+        }else{
+            alertMessage.textContent = 'Неизвестная ошибка';
         }
 
         alertMessage.classList.add('active');
-        input.style.borderBottom = '1px solid red'
+        input.style.borderBottom = '1px solid red';
     }else{
         alertMessage.classList.remove('active');
         input.style.borderBottom = '';
