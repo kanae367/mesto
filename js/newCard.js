@@ -4,10 +4,23 @@ import { db } from '../firebase.js';
 const cardNameInput = cardForm[0];
 const cardUrlInput = cardForm[1];
 
-export function addNewCard(){
-    addDoc(collection(db, "photos"), {name: cardNameInput.value, imagelink: cardUrlInput.value, timestamp: new Date().getTime()})
+function clearInputs(){
     cardNameInput.value = '';
     cardUrlInput.value = '';
+}
+
+export function addNewCard(){
+    const testImage = new Image()
+    testImage.src = cardUrlInput.value;
+    testImage.addEventListener('load', () => {
+        addDoc(collection(db, "photos"), {name: cardNameInput.value, imagelink: cardUrlInput.value, timestamp: new Date().getTime()});
+        clearInputs();
+    });
+    testImage.addEventListener('error', () => {
+        alert('Хорошая попытка. Это не картинка');
+        clearInputs();
+    });
+
 }
 
 export function handleAddNewCardBtnClick(){
