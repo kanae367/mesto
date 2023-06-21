@@ -501,6 +501,11 @@ button:focus{
     left: 0;
 }
 
+.validation-message.validation-message_info{
+    color: black;
+    opacity: .4;
+}
+
 .submit-button:disabled{
     background-color: inherit;
     color: black;
