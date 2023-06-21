@@ -9,6 +9,11 @@ import { handleAvatarEditBtnClick, changeAvatar } from "./js/avatar.js";
 import { handleAddNewCardBtnClick, addNewCard } from "./js/newCard.js";
 import { fetchAvatar } from "./js/avatar.js";
 import { fetchProfileData } from "./js/profile.js";
+import { createCard } from "./js/createCard.js";
+
+for(let i = 0; i < 6; i++){
+    createCard("...", 'images/image-placeholder.png', 0);
+}
 
 updateCards();
 fetchAvatar();
