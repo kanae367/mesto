@@ -16,8 +16,16 @@ function setAvatar(src){
     avatarUrlInput.value = '';
 };
 
-export async function changeAvatar(){
-    await updateDoc(doc(db, 'profile', 'image'), {imagesrc: avatarUrlInput.value})
+export function changeAvatar(){
+    const testImage = new Image()
+    testImage.src = avatarUrlInput.value;
+    testImage.addEventListener('load', () => {
+        updateDoc(doc(db, 'profile', 'image'), {imagesrc: avatarUrlInput.value})
+    });
+    testImage.addEventListener('error', () => {
+        alert('Невозможно установить изображение. Ссылка должна вести к изображению.');
+        avatarUrlInput.value = '';
+    });
 }
 
 export function handleAvatarEditBtnClick(){
