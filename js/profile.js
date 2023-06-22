@@ -1,7 +1,9 @@
 import { onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db } from '../firebase.js';
+import { db, status } from '../firebase.js';
 
 export async function fetchProfileData(){
+    if(status === false) return;
+
     await onSnapshot(doc(db, 'profile', 'information'), (snapshot) => {
         const profileInfo = snapshot.data();
         setProfileInfo(profileInfo.name, profileInfo.additionalinfo);
@@ -9,6 +11,8 @@ export async function fetchProfileData(){
 }
 
 export async function updateInfo(){
+    if(status === false) return;
+
     await updateDoc(doc(db, 'profile', 'information'), {name: profileNameInput.value, additionalinfo: profileOtherInfoInput.value});
 }
 

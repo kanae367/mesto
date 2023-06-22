@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+import { getFirestore, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { KEYS } from "./firebaseKeys.js";
 
 const firebaseConfig = {
@@ -12,7 +12,14 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-export const db = getFirestore(app);
+let status = false;
 
+await onSnapshot(collection(db, 'photos'), (snapshot) => {
+    if(snapshot.docs.some(item => typeof item === 'object')){
+        status = true;
+    }
+})
 
+export { db, status };

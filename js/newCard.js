@@ -1,5 +1,5 @@
 import { addDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db } from '../firebase.js';
+import { db, status } from '../firebase.js';
 
 const cardNameInput = cardForm[0];
 const cardUrlInput = cardForm[1];
@@ -10,6 +10,8 @@ function clearInputs(){
 }
 
 export function addNewCard(){
+    if(status === false) return;
+
     const testImage = new Image()
     testImage.src = cardUrlInput.value;
     testImage.addEventListener('load', () => {

@@ -1,7 +1,9 @@
 import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db } from '../firebase.js';
+import { db, status} from '../firebase.js';
 
 async function updateLikeState(target){
+    if(status === false) return;
+
     const id = target.closest('li').getAttribute('data-id');
     const currentState = target.classList.contains('like-btn_pressed');
 

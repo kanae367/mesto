@@ -1,10 +1,12 @@
 import { onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db } from '../firebase.js';
+import { db, status } from '../firebase.js';
 
 const avatar = document.querySelector('.profile__photo');
 const avatarUrlInput = avatarForm[0];
 
 export async function fetchAvatar(){
+    if(status === false) return;
+
     await onSnapshot(doc(db, 'profile', 'image'), (snapshot) => {
         const imagesrc = snapshot.data().imagesrc;
         setAvatar(imagesrc);
@@ -17,6 +19,8 @@ function setAvatar(src){
 };
 
 export function changeAvatar(){
+    if(status === false) return;
+
     const testImage = new Image()
     testImage.src = avatarUrlInput.value;
     testImage.addEventListener('load', () => {

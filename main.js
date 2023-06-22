@@ -3,53 +3,45 @@ import { handleImageClick } from "./js/handleImageClick.js";
 import { handleDeleteCardBtnClick } from "./js/handleDeleteBtnClick.js";
 import { handlePopupExitClick } from "./js/clearForms.js";
 import { setValidation } from "./js/validation.js";
-import { updateCards } from "./js/fetchCards.js";
 import { handleProfileEditBtnClick, updateInfo } from "./js/profile.js";
 import { handleAvatarEditBtnClick, changeAvatar } from "./js/avatar.js";
 import { handleAddNewCardBtnClick, addNewCard } from "./js/newCard.js";
-import { fetchAvatar } from "./js/avatar.js";
-import { fetchProfileData } from "./js/profile.js";
-import { createCard } from "./js/createCard.js";
+import { fetchData } from "./js/fetchData.js";
 
-for(let i = 0; i < 6; i++){
-    createCard("...", 'images/image-placeholder.png', 0);
-}
+(() => {
+    fetchData();
 
-updateCards();
-fetchAvatar();
-fetchProfileData();
-
-document.addEventListener('mousedown', handlePopupExitClick);
-
-const profileEditBtn = document.querySelector('.change-info-btn');
-profileEditBtn.addEventListener('click', handleProfileEditBtnClick);
-
-const avatarEditBtn = document.querySelector('.profile__photo-container');
-avatarEditBtn.addEventListener('click', handleAvatarEditBtnClick);
-
-const addCardBtn = document.querySelector('.add-photo-btn');
-addCardBtn.addEventListener('click', handleAddNewCardBtnClick);
-
-
-const cardsContainer = document.querySelector('.photos__list');
-cardsContainer.addEventListener('click', handleImageClick);
-cardsContainer.addEventListener('click', handleLikeBtnClick);
-cardsContainer.addEventListener('click', handleDeleteCardBtnClick);
-
-const forms = document.querySelectorAll('.menu__form');
-forms.forEach(form => setValidation(form));
-
-infoForm.addEventListener('submit', function(evt){
-    evt.preventDefault();
-    updateInfo();
-});
-
-avatarForm.addEventListener('submit', function(evt){
-    evt.preventDefault();
-    changeAvatar();
-});
-
-cardForm.addEventListener('submit', function(evt){
-    evt.preventDefault();
-    addNewCard();
-});
+    document.addEventListener('mousedown', handlePopupExitClick);
+    
+    const profileEditBtn = document.querySelector('.change-info-btn');
+    profileEditBtn.addEventListener('click', handleProfileEditBtnClick);
+    
+    const avatarEditBtn = document.querySelector('.profile__photo-container');
+    avatarEditBtn.addEventListener('click', handleAvatarEditBtnClick);
+    
+    const addCardBtn = document.querySelector('.add-photo-btn');
+    addCardBtn.addEventListener('click', handleAddNewCardBtnClick);
+    
+    const cardsContainer = document.querySelector('.photos__list');
+    cardsContainer.addEventListener('click', handleImageClick);
+    cardsContainer.addEventListener('click', handleLikeBtnClick);
+    cardsContainer.addEventListener('click', handleDeleteCardBtnClick);
+    
+    const forms = document.querySelectorAll('.menu__form');
+    forms.forEach(form => setValidation(form));
+    
+    infoForm.addEventListener('submit', function(evt){
+        evt.preventDefault();
+        updateInfo();
+    });
+    
+    avatarForm.addEventListener('submit', function(evt){
+        evt.preventDefault();
+        changeAvatar();
+    });
+    
+    cardForm.addEventListener('submit', function(evt){
+        evt.preventDefault();
+        addNewCard();
+    });
+})();

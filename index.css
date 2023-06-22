@@ -504,3 +504,15 @@
     visibility: visible;
     opacity: 1;
 }
+
+.no-response{
+    max-width: 440px;
+    height: fit-content;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: inherit;
+    border-radius: 8px;
+    border: 1px solid #FFFFFF50;
+    color: white;
+}

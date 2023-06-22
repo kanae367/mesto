@@ -5,6 +5,8 @@ const body = document.querySelector('body');
 const confirmPopupTemplate = document.querySelector('#confirm-popup');
 
 function handleConfirmBtnClick(element, popup){
+    if(db === false) return;
+
     const listItem = element.closest('li');
     const id = listItem.getAttribute('data-id');
     deleteDoc(doc(db, 'photos', id))

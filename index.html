@@ -47,7 +47,7 @@
                     </div>
                     <div class="menu__input-container">
                         <input class="menu__input" placeholder="Дополнительная информация" maxlength="40" type="text">
-                        <span class="validation-message active validation-message_info">Максимальная длина - 40 символов</span>
+                        <span class="validation-message validation-message_info active">Максимальная длина - 40 символов</span>
                     </div>
                     <button class="submit-button" type="submit" disabled>Сохранить</button>
                 </form>
@@ -64,7 +64,7 @@
                         <span class="validation-message"></span>
                     </div>
                     <div class="menu__input-container">
-                        <input class="menu__input" placeholder="Ссылка на картинку" type="text" pattern="^(http:\/\/).+|^(https:\/\/).+" required>
+                        <input class="menu__input" placeholder="Ссылка на картинку" type="text" pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})" required>
                         <span class="validation-message"></span>
                     </div>
                     <button class="submit-button" type="submit" disabled >Создать</button>
@@ -78,7 +78,7 @@
                 <h3 class="menu__title">Обновить аватар</h3>
                 <form name="avatarForm" class="menu__form">
                     <div class="menu__input-container">
-                        <input class="menu__input" placeholder="Ссылка на изображение" type="text" pattern="^(http:\/\/).+|^(https:\/\/).+" required>
+                        <input class="menu__input" placeholder="Ссылка на изображение" type="text" pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})" required>
                         <span class="validation-message"></span>
                     </div>
                     <button class="submit-button" type="submit" disabled>Сохранить</button>
