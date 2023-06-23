@@ -1,6 +1,4 @@
 const validateInputs = function(input){
-    if(!input.required) return;
-
     const alertMessage = input.closest('.menu__input-container').querySelector('.validation-message');
 
     if(input.checkValidity() === false){
@@ -12,14 +10,16 @@ const validateInputs = function(input){
             alertMessage.textContent = 'Введите адрес сайта.';
         }else if(validity.tooShort){
             alertMessage.textContent = 'Минимальная длина - 3 символа';
-        }else{
-            alertMessage.textContent = 'Неизвестная ошибка';
+        }else if(validity.tooLong){
+            alertMessage.textContent = 'Максимальная длина - 40 символов';
+            alertMessage.style.color = 'red';
         }
 
         alertMessage.classList.add('active');
         input.style.borderBottom = '1px solid red';
     }else{
         alertMessage.classList.remove('active');
+        alertMessage.style.color = '';
         input.style.borderBottom = '';
     }
 }

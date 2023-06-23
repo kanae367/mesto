@@ -1,10 +1,10 @@
-const bigImageTemplate = document.querySelector('#big-image');
-const body = document.querySelector('body');
-
 function closePopupImage(evt){
     const target = evt.target;
     if(!(target != this)) setTimeout(() => this.remove(), 300)
 }
+
+const bigImageTemplate = document.querySelector('#big-image');
+const body = document.querySelector('body');
 
 export function createImagePopup(image) {
     const clone = bigImageTemplate.content.cloneNode(true);

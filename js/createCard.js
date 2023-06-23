@@ -1,6 +1,7 @@
+const cardTemplate = document.querySelector('#card');
+const ul = document.querySelector('.photos__list');
+
 export function createCard(cardName, imageLink, id, isLiked = false){
-    const cardTemplate = document.querySelector('#card');
-    const ul = document.querySelector('.photos__list');
     const clone = cardTemplate.content.cloneNode(true);
     const image = clone.querySelector('.item__image');
     const header  = clone.querySelector('.item__header');

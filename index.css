@@ -479,25 +479,23 @@
 }
 
 .validation-message{
-    position: absolute;
     visibility: hidden;
     opacity: 0;
-    color: red;
+    position: absolute;
+    color: black;
     font-size: 12px;
     line-height: 15px;
     bottom: 10px;
     left: 0;
 }
 
-.validation-message.validation-message_info{
-    bottom: 10px;
-        left: 0;
-    position: absolute;
-    font-size: 12px;
-    line-height: 15px;
-    bottom: 10px;
-    color: black;
+input:not(:required) + .validation-message{
+    visibility: visible;
     opacity: .4;
+}
+
+.validation-message.active{
+    color: red;
 }
 
 .submit-button:disabled{

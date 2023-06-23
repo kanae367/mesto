@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getFirestore, onSnapshot, collection, doc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+import { getFirestore, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { KEYS } from "./firebaseKeys.js";
 
 const firebaseConfig = {
@@ -16,8 +16,8 @@ const db = getFirestore(app);
 
 let status = false;
 
-await onSnapshot(doc(db, 'profile', 'image'), (snapshot) => {
-    if(snapshot.data().imagesrc){
+await onSnapshot(doc(db, 'isConnected', 'isConnected'), (snapshot) => {
+    if(snapshot.data().isConnected){
         status = true;
     }
 })

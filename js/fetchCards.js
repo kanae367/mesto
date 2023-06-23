@@ -9,7 +9,8 @@ export async function fetchCards(){
         const cardsArray = [];
         snapshot.docs.map(item => cardsArray.push({...item.data(), id: item.id}));
         cardsArray.sort((a, b) => a.timestamp - b.timestamp);
-        document.querySelectorAll('.photos__list-item').forEach(item => item.remove());
+        // document.querySelectorAll('.photos__list *').forEach(item => item.remove());
+        document.querySelector('.photos__list').innerHTML = '';
         cardsArray.forEach(item => createCard(item.name, item.imagelink, item.id, item.isLiked));
     })
 }
