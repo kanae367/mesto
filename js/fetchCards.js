@@ -1,15 +1,14 @@
 import { createCard } from './createCard.js';
-import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+import { collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { db, status } from '../firebase.js';
 
 export async function fetchCards(){
     if(status === false) return;
+    const ref = query(collection(db, "photos"), orderBy("timestamp"));
 
-    await onSnapshot(collection(db, 'photos'), (snapshot) => {
+    await onSnapshot(ref, (snapshot) => {
         const cardsArray = [];
         snapshot.docs.map(item => cardsArray.push({...item.data(), id: item.id}));
-        cardsArray.sort((a, b) => a.timestamp - b.timestamp);
-        // document.querySelectorAll('.photos__list *').forEach(item => item.remove());
         document.querySelector('.photos__list').innerHTML = '';
         cardsArray.forEach(item => createCard(item.name, item.imagelink, item.id, item.isLiked));
     })
