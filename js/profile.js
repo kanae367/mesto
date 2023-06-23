@@ -27,8 +27,7 @@ function setInitialInputValue(){
 }
 
 function setProfileInfo(name, other){
-    const pageTitle = document.querySelector('title');
-    pageTitle.innerHTML = name;
+    document.title = name;
     profileName.textContent = name;
     otherInfo.textContent = other;
 }
