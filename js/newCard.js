@@ -1,10 +1,11 @@
 import { addDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { db, status } from '../firebase.js';
 
-const cardNameInput = cardForm[0];
-const cardUrlInput = cardForm[1];
 
-function clearInputs(){
+export function clearInputs(){
+    const cardNameInput = cardForm[0];
+    const cardUrlInput = cardForm[1];
+
     cardNameInput.value = '';
     cardUrlInput.value = '';
 }
@@ -12,6 +13,8 @@ function clearInputs(){
 export function addNewCard(){
     if(status === false) return;
 
+    const cardNameInput = cardForm[0];
+    const cardUrlInput = cardForm[1];
     const testImage = new Image()
     testImage.src = cardUrlInput.value;
     testImage.addEventListener('load', () => {
@@ -19,7 +22,7 @@ export function addNewCard(){
         clearInputs();
     });
     testImage.addEventListener('error', () => {
-        alert('Хорошая попытка. Это не картинка');
+        alert('Невозможно добавить изображение. Ссылка должна вести к изображению.');
         clearInputs();
     });
 

@@ -35,7 +35,7 @@ export function fetchData(){
     displayError = setTimeout(() => {
         document.querySelector('ul').innerHTML =
         `<div class="no-response">
-        <h2>Ошибка при попытке получить данные от сервера.</h2>
+            <h2>Ошибка при попытке получить данные от сервера.</h2>
         </div>`;
     }, 2000);    
 }

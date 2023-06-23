@@ -490,6 +490,12 @@
 }
 
 .validation-message.validation-message_info{
+    bottom: 10px;
+        left: 0;
+    position: absolute;
+    font-size: 12px;
+    line-height: 15px;
+    bottom: 10px;
     color: black;
     opacity: .4;
 }
