@@ -1,14 +1,6 @@
 import { addDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { db, status } from '../firebase.js';
-
-
-export function clearInputs(){
-    const cardNameInput = cardForm[0];
-    const cardUrlInput = cardForm[1];
-
-    cardNameInput.value = '';
-    cardUrlInput.value = '';
-}
+import { clearInputs } from "./clearInputs.js";
 
 export function addNewCard(){
     if(status === false) return;
@@ -25,10 +17,4 @@ export function addNewCard(){
         alert('Невозможно добавить изображение. Ссылка должна вести к изображению.');
         clearInputs();
     });
-
-}
-
-export function handleAddNewCardBtnClick(){
-    const createCardPopup = document.getElementById('add-card-popup');
-    createCardPopup.classList.add('active');
 }

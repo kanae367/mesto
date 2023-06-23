@@ -5,7 +5,8 @@ import { handlePopupExitClick } from "./js/clearForms.js";
 import { setValidation } from "./js/validation.js";
 import { handleProfileEditBtnClick, updateInfo } from "./js/profile.js";
 import { handleAvatarEditBtnClick, changeAvatar } from "./js/avatar.js";
-import { handleAddNewCardBtnClick, addNewCard } from "./js/newCard.js";
+import { addNewCard } from "./js/newCard.js";
+import { handleAddNewCardBtnClick } from "./js/handleAddNewCardBtnClick.js";
 import { fetchData } from "./js/fetchData.js";
 
 (() => {
