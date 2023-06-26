@@ -1,6 +1,7 @@
 import { addDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { db, status } from '../firebase.js';
 import { clearInputs } from "./clearInputs.js";
+import { handleImageNotFoundError } from "./handleImageNotFoundError.js";
 
 export function addNewCard(){
     if(status === false) return;
@@ -14,7 +15,7 @@ export function addNewCard(){
         clearInputs();
     });
     testImage.addEventListener('error', () => {
-        alert('Невозможно добавить изображение. Ссылка должна вести к изображению.');
+        handleImageNotFoundError('card');
         clearInputs();
     });
 }

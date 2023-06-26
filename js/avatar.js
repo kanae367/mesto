@@ -1,5 +1,6 @@
 import { onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { db, status } from '../firebase.js';
+import { handleImageNotFoundError } from "./handleImageNotFoundError.js";
 
 
 export async function fetchAvatar(){
@@ -29,7 +30,7 @@ export function changeAvatar(){
         updateDoc(doc(db, 'profile', 'image'), {imagesrc: avatarUrlInput.value})
     });
     testImage.addEventListener('error', () => {
-        alert('Невозможно установить изображение. Ссылка должна вести к изображению.');
+        handleImageNotFoundError('avatar');
         avatarUrlInput.value = '';
     });
 }

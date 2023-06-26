@@ -504,11 +504,6 @@ input:not(:required) + .validation-message{
     opacity: .2;
 }
 
-.active {
-    visibility: visible;
-    opacity: 1;
-}
-
 .no-response{
     max-width: 440px;
     height: fit-content;
@@ -519,4 +514,29 @@ input:not(:required) + .validation-message{
     border-radius: 8px;
     border: 1px solid #FFFFFF50;
     color: white;
+}
+
+.error-popup{
+    visibility: hidden;
+    opacity: 0;
+    width: min(80%, 660px);
+    position: fixed;
+    z-index: 100;
+    top: 40px;
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 auto;
+    line-height: 1;
+    font-size: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    transition: opacity .5s, visibility .5s;
+}
+
+.active {
+    visibility: visible;
+    opacity: 1;
 }
