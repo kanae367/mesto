@@ -328,7 +328,7 @@
     align-items: center;
     transition: opacity .3s, visibility .3s;
     opacity: 0;
-    z-index: 2;
+    z-index: 100;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
 }

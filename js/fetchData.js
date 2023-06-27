@@ -30,7 +30,7 @@ function checkStatus(){
 }
 
 export function fetchData(){
-    handleStatusChange = setInterval(checkStatus, 50)
+    handleStatusChange = setInterval(checkStatus, 50);
     
     displayError = setTimeout(() => {
         document.querySelector('ul').innerHTML =
