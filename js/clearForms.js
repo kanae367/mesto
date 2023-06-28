@@ -1,10 +1,4 @@
-function clearInputs(element){
-    const inputs = element.querySelectorAll('.menu__input');
-    inputs.forEach(input => {
-        input.style.borderBottom = '';
-        input.value = '';
-    });
-}
+import { clearInputs } from "./clearInputs.js";
 
 function clearAlerts(element){
     const alerts = element.querySelectorAll('.validation-message');

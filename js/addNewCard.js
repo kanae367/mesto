@@ -14,11 +14,11 @@ export function addNewCard(){
 
     testImage.addEventListener('load', () => {
         addDoc(collection(db, "photos"), {name: cardNameInput.value, imagelink: cardUrlInput.value, timestamp: new Date().getTime()});
-        clearInputs();
+        clearInputs(cardForm);
     });
 
     testImage.addEventListener('error', () => {
         handleImageNotFoundError('card');
-        clearInputs();
+        clearInputs(cardForm);
     });
 }

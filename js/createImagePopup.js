@@ -4,7 +4,6 @@ function closePopupImage(evt){
 }
 
 const bigImageTemplate = document.querySelector('#big-image');
-const body = document.querySelector('body');
 
 export function createImagePopup(image) {
     const clone = bigImageTemplate.content.cloneNode(true);
@@ -15,7 +14,7 @@ export function createImagePopup(image) {
     fullImage.alt = image.alt;
     fullImage.src = image.src;
     imageCaption.textContent = fullImage.alt;
-    body.append(popupImage);
+    document.body.append(popupImage);
 
     setTimeout(() => {
         popupImage.classList.add('active');

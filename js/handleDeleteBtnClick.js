@@ -1,7 +1,6 @@
 import { deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { db } from '../firebase.js';
 
-const body = document.querySelector('body');
 const confirmPopupTemplate = document.querySelector('#confirm-popup');
 
 function handleConfirmBtnClick(element, popupBtn){
@@ -18,7 +17,7 @@ function createConfirmPopup(element){
     const confirmPopupBtn = confirmPopup.querySelector('.submit-button');
     const closeBtn = confirmPopup.querySelector('.close-button');
     confirmPopupBtn.style.marginTop = '0';
-    body.append(confirmPopup);
+    document.body.append(confirmPopup);
     
     setTimeout(() => {
         closeBtn.closest('.menu-container').classList.add('active');

@@ -1,8 +1,8 @@
-const inputs = cardForm.querySelectorAll('input');
-const cardNameInput = inputs[0];
-const cardUrlInput = inputs[1];
+export function clearInputs(element){
+    const inputs = element.querySelectorAll('.menu__input');
 
-export function clearInputs(){
-    cardNameInput.value = '';
-    cardUrlInput.value = '';
+    inputs.forEach(input => {
+        input.style.borderBottom = '';
+        input.value = '';
+    });
 }
