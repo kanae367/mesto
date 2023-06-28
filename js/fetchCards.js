@@ -4,6 +4,7 @@ import { db, status } from '../firebase.js';
 
 export async function fetchCards(){
     if(status === false) return;
+
     const ref = query(collection(db, "photos"), orderBy("timestamp"));
 
     await onSnapshot(ref, (snapshot) => {

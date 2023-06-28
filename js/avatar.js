@@ -12,18 +12,17 @@ export async function fetchAvatar(){
     })
 }
 
-function setAvatar(src){
-    const avatar = document.querySelector('.profile__photo');
-    const avatarUrlInput = avatarForm[0];
+const avatar = document.querySelector('.profile__photo');
+const avatarUrlInput = avatarForm[0];
 
+function setAvatar(src){
     avatar.src = src;
     avatarUrlInput.value = '';
 };
 
 export function changeAvatar(){
     if(status === false) return;
-    
-    const avatarUrlInput = avatarForm[0];
+
     const testImage = new Image()
     testImage.src = avatarUrlInput.value;
     testImage.addEventListener('load', () => {
@@ -35,7 +34,8 @@ export function changeAvatar(){
     });
 }
 
+const changeAvatarPopup = document.getElementById('change-avatar-popup');
+
 export function handleAvatarEditBtnClick(){
-    const changeAvatarPopup = document.getElementById('change-avatar-popup');
     changeAvatarPopup.classList.add('active');
 }

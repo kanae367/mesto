@@ -4,13 +4,13 @@ import { db } from '../firebase.js';
 const body = document.querySelector('body');
 const confirmPopupTemplate = document.querySelector('#confirm-popup');
 
-function handleConfirmBtnClick(element, popup){
+function handleConfirmBtnClick(element, popupBtn){
     if(db === false) return;
 
     const listItem = element.closest('li');
     const id = listItem.getAttribute('data-id');
     deleteDoc(doc(db, 'photos', id))
-    popup.closest('.menu-container').remove();
+    popupBtn.closest('.menu-container').remove();
 }
 
 function createConfirmPopup(element){

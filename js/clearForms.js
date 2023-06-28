@@ -1,17 +1,31 @@
-const alerts = document.querySelectorAll('.validation-message'); 
-const inputs = document.querySelectorAll('.menu__input');
-const btns = document.querySelectorAll('.submit-button');
+function clearInputs(element){
+    const inputs = element.querySelectorAll('.menu__input');
+    inputs.forEach(input => {
+        input.style.borderBottom = '';
+        input.value = '';
+    });
+}
 
-const resetPopups = function(element){
-    element.closest('.menu-container').classList.remove('active');
+function clearAlerts(element){
+    const alerts = element.querySelectorAll('.validation-message');
+    alerts.forEach(alert => alert.classList.remove('active'));
+}
+
+function disableSubmitBtn(element){
+    const btn = element.querySelector('.submit-button');
+    btn.disabled = 'true';
+
+}
+
+const resetPopup = function(popup){
+    popup.classList.remove('active');
+
+    if(popup.querySelector('img')) return;
 
     setTimeout(() => {
-        for(const btn of btns) btn.disabled = 'true';
-        for(const alert of alerts) alert.classList.remove('active');
-        for(const input of inputs){
-            input.style.borderBottom = '';
-            input.value = '';
-        }
+        disableSubmitBtn(popup);
+        clearAlerts(popup);
+        clearInputs(popup);
     }, 300);
 }
 
@@ -19,6 +33,6 @@ export function handlePopupExitClick(evt){
     const target = evt.target;
 
     if(target.classList.contains('close-button') || target.classList.contains('menu-container')){
-        resetPopups(target);
+        resetPopup(target);
     }
 }

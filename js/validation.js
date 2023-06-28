@@ -6,12 +6,12 @@ const validateInputs = function(input){
 
         if(validity.valueMissing){
             alertMessage.textContent = 'Вы пропустили это поле.';
-        }else if(validity.patternMismatch){
+        }else if(validity.typeMismatch){
             alertMessage.textContent = 'Введите адрес сайта.';
         }else if(validity.tooShort){
             alertMessage.textContent = 'Минимальная длина - 3 символа';
         }else if(validity.tooLong){
-            alertMessage.textContent = 'Максимальная длина - 40 символов';
+            alertMessage.textContent = `Максимальная длина - ${input.getAttribute('maxlength')} символов`;
             alertMessage.style.color = 'red';
         }
 
