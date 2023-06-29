@@ -1,6 +1,6 @@
 function closePopupImage(evt){
     const target = evt.target;
-    if(target === this) setTimeout(() => this.remove(), 300)
+    if(target === this || target.classList.contains('close-button')) setTimeout(() => this.remove(), 300)
 }
 
 const bigImageTemplate = document.querySelector('#big-image');
