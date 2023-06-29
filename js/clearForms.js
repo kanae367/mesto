@@ -8,10 +8,10 @@ function clearAlerts(element){
 function disableSubmitBtn(element){
     const btn = element.querySelector('.submit-button');
     btn.disabled = 'true';
-
 }
 
-const resetPopup = function(popup){
+const resetPopup = function(target){
+    const popup = target.closest('.menu-container');
     popup.classList.remove('active');
 
     if(popup.querySelector('img')) return;
