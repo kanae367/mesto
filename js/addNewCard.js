@@ -1,5 +1,5 @@
 import { addDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db, status } from '../firebase.js';
+import { db, status } from './firebase/firebase.js';
 import { clearInputs } from "./clearInputs.js";
 import { handleImageNotFoundError } from "./handleImageNotFoundError.js";
 

@@ -2,7 +2,7 @@ import { fetchCards } from "./fetchCards.js";
 import { fetchAvatar } from "./avatar.js";
 import { fetchProfileData } from "./profile.js";
 import { createCard } from "./createCard.js";
-import { status } from "../firebase.js";
+import { status } from "./firebase/firebase.js";
 
 function startCoroutine(){
     fetchCards();

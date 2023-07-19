@@ -1,6 +1,6 @@
 import { createCard } from './createCard.js';
 import { collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db, status } from '../firebase.js';
+import { db, status } from './firebase/firebase.js';
 
 export async function fetchCards(){
     if(status === false) return;

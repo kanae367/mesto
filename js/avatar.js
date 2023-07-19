@@ -1,5 +1,5 @@
 import { onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db, status } from '../firebase.js';
+import { db, status } from './firebase/firebase.js';
 import { handleImageNotFoundError } from "./handleImageNotFoundError.js";
 
 

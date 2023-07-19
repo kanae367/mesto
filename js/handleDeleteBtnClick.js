@@ -1,5 +1,5 @@
 import { deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db } from '../firebase.js';
+import { db } from './firebase/firebase.js';
 
 const confirmPopupTemplate = document.querySelector('#confirm-popup');
 

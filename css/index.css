@@ -99,7 +99,7 @@
     width: 16px;
     height: 16px;
     transition: opacity 0.8s;
-    background-image: url(images/change-bg.svg);
+    background-image: url(../images/change-bg.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
@@ -127,7 +127,7 @@
     height: 50px;
     transition: opacity 0.5s;
     padding: 0;
-    background-image: url(images/plus.svg);
+    background-image: url(../images/plus.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
@@ -241,7 +241,7 @@
     z-index: 1;
     height: 19px;
     cursor: pointer;
-    background-image: url(images/trash.svg);
+    background-image: url(../images/trash.svg);
     background-position: center;
     background-size: 100% 100%;
     top: 20px;
@@ -276,7 +276,7 @@
     width: 22px;
     height: 19px;
     background-color: transparent;
-    background-image: url(images/like.svg);
+    background-image: url(../images/like.svg);
     background-position: center;
     background-repeat: no-repeat;
     transition: all 0.5s;
@@ -317,7 +317,7 @@
 }
 
 .like-btn_pressed{
-    background-image: url(images/like_pressed.svg);
+    background-image: url(../images/like_pressed.svg);
 }
 
 .menu-container{
@@ -403,7 +403,7 @@
     transition: opacity 0.6s;
     cursor: pointer;
     background-color: transparent;
-    background-image: url(images/closeicon.svg);
+    background-image: url(../images/closeicon.svg);
     background-size: 100% 100%;
     border: none;
 }
@@ -461,7 +461,7 @@
     width: 122px;
     height: 122px;
     cursor: pointer;
-    background-image: url(images/change-photo.svg);
+    background-image: url(../images/change-photo.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.8);

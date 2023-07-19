@@ -10,7 +10,7 @@ The user can add a new card containing an image and a name, as well as delete an
 
 You can visit website by clicking [this link](https://kanae367.github.io/mesto/)
 
-## The project was made using the following technologies:
+## Technologies used:
 
 - HTML
 - CSS

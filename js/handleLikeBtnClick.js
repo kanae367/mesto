@@ -1,5 +1,5 @@
 import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { db, status} from '../firebase.js';
+import { db, status} from './firebase/firebase.js';
 
 async function updateLikeState(target){
     if(status === false) return;
