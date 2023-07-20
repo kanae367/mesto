@@ -16,7 +16,6 @@ function createConfirmPopup(element){
     const confirmPopup = confirmPopupTemplate.content.cloneNode(true);
     const confirmPopupBtn = confirmPopup.querySelector('.submit-button');
     const closeBtn = confirmPopup.querySelector('.close-button');
-    confirmPopupBtn.style.marginTop = '0';
     document.body.append(confirmPopup);
     
     setTimeout(() => {

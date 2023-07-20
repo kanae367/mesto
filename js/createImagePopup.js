@@ -10,7 +10,6 @@ export function createImagePopup(image) {
     const popupImage = clone.querySelector('.menu-container');
     const fullImage = popupImage.querySelector('.full-image');
     const imageCaption = popupImage.querySelector('span');
-    popupImage.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
     fullImage.alt = image.alt;
     fullImage.src = image.src;
     imageCaption.textContent = fullImage.alt;
